@@ -1,0 +1,1 @@
+Override the behavior of Update Service Reference in VS 2017
