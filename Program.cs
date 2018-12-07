@@ -1,29 +1,30 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using EnvDTE;
 using EnvDTE80;
 using System.Runtime.InteropServices;
-using System.Windows.Forms;
 
 namespace ConsoleApp2
 {
     class Program
     {
+        /*
+         * STAThreadAttribute indicates that the COM threading model for the application is single-threaded apartment. 
+         * This attribute must be present on the entry point of any application that uses Windows Forms; if it is omitted, the Windows components might not work correctly. 
+         * If the attribute is not present, the application uses the multithreaded apartment model, which is not supported for Windows Forms.
+         * 
+         */
         [STAThread]
         static void Main(string[] args)
         {
-            EnvDTE80.DTE2 dte;
+            DTE2 dte;
             object obj = null;
-            System.Type t = null;
+            Type t = null;
 
             // Get the ProgID for DTE 8.0.
-            t = System.Type.GetTypeFromProgID("VisualStudio.DTE.15.0",
-              true);
+            t = Type.GetTypeFromProgID("VisualStudio.DTE.15.0",true);
             // Create a new instance of the IDE.
-            obj = System.Activator.CreateInstance(t, true);
+            obj = Activator.CreateInstance(t, true);
             // Cast the instance to DTE2 and assign to variable dte.
-            dte = (EnvDTE80.DTE2)obj;
+            dte = (DTE2)obj;
 
             // Register the IOleMessageFilter to handle any threading 
             // errors.
